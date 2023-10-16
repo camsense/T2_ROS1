@@ -1,0 +1,42 @@
+
+cmake_minimum_required(VERSION 2.8.3)
+project(ros1_t2_sdk)
+
+add_definitions(-std=c++11) # Use C++11
+
+
+FIND_PACKAGE(catkin REQUIRED COMPONENTS
+    roscpp
+    rospy
+    geometry_msgs
+    nav_msgs
+    laser_geometry
+    tf
+  )
+INCLUDE_DIRECTORIES(${catkin_INCLUDE_DIRS})
+
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/base)
+LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/src/base)
+
+
+INCLUDE_DIRECTORIES(
+    ${PROJECT_SOURCE_DIR}/dep
+    ${PROJECT_SOURCE_DIR}/dep/eigen3
+	)
+	
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include)
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/lib)
+LINK_DIRECTORIES(${PROJECT_SOURCE_DIR}/lib)
+
+	
+ADD_SUBDIRECTORY(src/base)
+
+
+ADD_EXECUTABLE (ros1_t2_sdk src/main.cpp)
+TARGET_LINK_LIBRARIES (ros1_t2_sdk ${catkin_LIBRARIES} lidar)
+
+
+#SET(CMAKE_CONFIGURATION_TYPES Release CACHE STRING "" FORCE)
+#SET(EXECUTABLE_OUTPUT_PATH ${CAMSENSE_SDK_SOURCE_DIR}/bin/lib CACHE PATH "Build directory" FORCE)
+#SET(LIBRARY_OUTPUT_PATH ${CAMSENSE_SDK_SOURCE_DIR}/bin/lib CACHE PATH "Build directory" FORCE)
+
