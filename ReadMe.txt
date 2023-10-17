@@ -7,8 +7,8 @@ Tutorial:
     cd build
     cmake ..
     make
-    source devel/setup.bash
-    rosrun ros1_t2_sdk ros1_t2_sdk.sh
+    roscore &
+    ./ros1_t2_sdk
 
 2.版本
     1）此版本为T2 V3.3.5支持ROS1的驱动包如果想改成其他版本请参照SDK包的 Version.txt文件做相应的修改
